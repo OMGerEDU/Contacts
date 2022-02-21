@@ -15,6 +15,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +31,8 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     Context context;
     ArrayList<Contact> contacts;
     Contact contact;
-
+    FragmentManager fragmentManager2;
+    Intent intent;
     public ContactAdapter(Context context, ArrayList<Contact> contacts) {
         this.context = context;
         this.contacts = contacts;
@@ -42,6 +46,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     @Override
     public void onBindViewHolder(@NonNull ContactViewHolder holder, int position) {
         contact = contacts.get(position);
+
         holder.name.setText(contact.getName());
         holder.phoneNum.setText(contact.getPhoneNum());
         holder.gender.setText(contact.getGender());
@@ -49,7 +54,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("phoneNumba");
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("phoneNum");
                 ref.setValue(holder.phoneNum.getText().toString());
                 DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference("message");
                 DatabaseReference ref3 = FirebaseDatabase.getInstance().getReference("gender");
@@ -69,7 +74,15 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                         holder.card.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
                     }
                 }, 100);
+
+
+
+
+
+
+
             }
+
         });
     }
 

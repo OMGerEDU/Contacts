@@ -7,11 +7,6 @@
         android:title="Item"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/search_contact_menu_item"
-        android:icon="@drawable/search_icon"
-        android:title="Item"
-        app:showAsAction="ifRoom" />
-    <item
         android:id="@+id/back_to_reality_menu_item"
         android:icon="@drawable/smartphone"
         android:title="Item"

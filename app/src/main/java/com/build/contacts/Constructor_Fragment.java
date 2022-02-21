@@ -20,6 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.regex.Pattern;
 
 
 public class Constructor_Fragment extends Fragment {
@@ -57,9 +59,14 @@ public class Constructor_Fragment extends Fragment {
                     Contact contact = new Contact(dataSnapshot.child("name").getValue().toString(),
                             dataSnapshot.child("phoneNum").getValue().toString(),
                             dataSnapshot.child("gender").getValue().toString());
-                    if(contact.getName().contains(word)||contact.getPhoneNum().contains(word)){
-                        contacts.add(contact);
+                    if(bundle!=null) {
+
+                        if (contact.getName().contains(word) || contact.getPhoneNum().contains(word)||contact.getName().toUpperCase().contains(word.toUpperCase(Locale.ROOT))) {
+                            contacts.add(contact);
+                        }
                     }
+                    else
+                        contacts.add(contact);
 
                 }
                 contactAdapter.notifyDataSetChanged();

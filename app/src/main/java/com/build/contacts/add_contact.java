@@ -30,7 +30,6 @@ public class add_contact extends Fragment {
 
     EditText contactName,contactNum;
     RadioGroup radioGroup;
-    RadioButton radioButton;
     Button addBtn;
     Contact contact;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
