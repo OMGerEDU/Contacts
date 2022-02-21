@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,6 +65,11 @@ public class add_contact extends Fragment {
                 }else{
                     Toast.makeText(getActivity(),"the name must contain atleast 2 letters buddy",Toast.LENGTH_SHORT).show();
                 }
+                FragmentManager fragmentManager =  getActivity().getSupportFragmentManager();
+
+                fragmentManager.beginTransaction().replace(R.id.fragmentContainerView2, AllContacts_fragment.class, null).setReorderingAllowed(true).addToBackStack(null).commit();
+
+
             }
         });
 

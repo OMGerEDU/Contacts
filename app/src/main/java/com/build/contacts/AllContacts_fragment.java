@@ -1,6 +1,5 @@
 package com.build.contacts;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -9,21 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
 public class AllContacts_fragment extends Fragment {
 
     ContactAdapter contactAdapter;
-    FragmentManager fragmentManager2;
+    FragmentManager fragmentManager;
     Fragment fragment;
     Button add_contact;
     EditText Search;
@@ -35,7 +29,7 @@ public class AllContacts_fragment extends Fragment {
         View v=inflater.inflate(R.layout.fragment_all_contacts_fragment, container, false);
         ArrayList<Contact> contacts=new ArrayList<Contact>();
         contactAdapter=new ContactAdapter(this.getActivity(),contacts);
-        fragmentManager2 =  getActivity().getSupportFragmentManager();
+        fragmentManager =  getActivity().getSupportFragmentManager();
         Search = v.findViewById(R.id.et_searchEditText);
 
         Search.addTextChangedListener(new TextWatcher() {
@@ -56,7 +50,7 @@ public class AllContacts_fragment extends Fragment {
                 bundle.putString("word",searched);
                 fragment= new Constructor_Fragment();
                 fragment.setArguments(bundle);
-                fragmentManager2.beginTransaction().replace(R.id.fragmentContainerView2, fragment, null).setReorderingAllowed(true).addToBackStack(null).commit();
+                fragmentManager.beginTransaction().replace(R.id.fragmentContainerView2, fragment, null).setReorderingAllowed(true).addToBackStack(null).commit();
 
 
 
@@ -66,14 +60,13 @@ public class AllContacts_fragment extends Fragment {
 
 
         fragment= new Constructor_Fragment();
-        fragmentManager2.beginTransaction().replace(R.id.fragmentContainerView2, fragment, null).setReorderingAllowed(true).addToBackStack(null).commit();
+        fragmentManager.beginTransaction().replace(R.id.fragmentContainerView2, fragment, null).setReorderingAllowed(true).addToBackStack(null).commit();
 
         add_contact = v.findViewById(R.id.Add_contact_btnMain);
         add_contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity() ,Activity_addContact.class);
-                startActivity(intent);
+                fragmentManager.beginTransaction().replace(R.id.fragmentContainerView, add_contact.class, null).setReorderingAllowed(true).addToBackStack(null).commit();
             }
         });
 

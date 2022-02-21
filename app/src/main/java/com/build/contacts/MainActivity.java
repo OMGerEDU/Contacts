@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     Button smser;
     String phoneNumber="0";
     String smsText="Look at my horse, my horse is amazing, give it a lick. Hmm, it tastes like raisins.";
+    Boolean flag=false;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();
@@ -54,14 +55,13 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
 
             case R.id.add_contact_menu_item:
-
-                Intent intent=new Intent(MainActivity.this,Activity_addContact.class);
-                startActivity(intent);
+                fragmentManager.beginTransaction().replace(R.id.fragmentContainerView,  add_contact.class, null).setReorderingAllowed(true).addToBackStack(null).commit();
                 break;
 
             case R.id.back_to_reality_menu_item:
-                fragmentManager = getSupportFragmentManager();
                 settings();
+
+                //settings();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -164,6 +164,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+
 
     public void resetNum() {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("phoneNum");
